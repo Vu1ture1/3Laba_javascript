@@ -1,0 +1,1657 @@
+<head>
+    <style>
+        
+        body{
+            font-family : "Roboto Flex", sans-serif;
+        }
+        
+        .med-container {
+            display: grid;
+            /*grid-template-columns: repeat(auto-fill, minmax(300px, 3fr));*/
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            
+            width: 60%;
+            height: auto;
+            border: 2px outset #ccc;
+            padding: 20px;
+            text-align: left;
+            margin: 0 auto;
+            transition: transform 0.3s;
+        }
+
+        .med-container:hover {
+            transform: scale(1.02);
+            border: 2px outset black;
+        }
+
+        .med-container button {
+            text-decoration: none;
+            color:black;
+            background-color: rgb(236, 249, 250);
+            border-radius: 5px;
+            margin-right: 15px;
+            transition: background-color 0.1s;
+        }
+        .med-container button:hover {
+            background-color: black;
+            color: white;
+        }
+
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .dep-card {
+            position: relative;
+            border: 2px outset #ccc;
+            overflow: hidden;
+            height: 100%;
+            min-width: 300px;
+            min-height: 350px;
+            margin-bottom: 10px;
+            transition: transform 0.3s;
+        }
+
+        .dep-card:hover{
+            transform: scale(1.02);
+            border: 2px outset black;
+        }
+
+        .dep-card form {
+            position: absolute;  
+            right: 0;           
+            bottom: 0;         
+        }
+
+        .image {
+            width: 200px;
+            height: auto;
+        }
+
+        .news-container {
+            display: grid;
+            grid-template-columns: 1fr;
+
+            position: relative; 
+    
+            gap: 20px;
+            
+            width: 60%;
+            height: auto;
+            border: 2px outset #ccc;
+            padding: 20px;
+            text-align: left;
+            margin: 0 auto;
+            transition: transform 0.3s;
+        }
+
+        .news-container:hover {
+            transform: scale(1.02);
+            border: 2px outset black;
+        }
+
+
+        .news-container p {
+            overflow-wrap: break-word;
+            word-break: break-word;
+        }
+
+        .news-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .news-item article {
+            max-width: 700px;
+        }
+        
+        .news-item article p {
+            white-space: nowrap; 
+            overflow: hidden; 
+            text-overflow: ellipsis;
+        }
+        
+        
+        .link-button {
+            background: none;
+            color: black;
+            border: none;
+            text-decoration: none;
+            display: block;  
+            font-size: 15px;
+            cursor: pointer;
+        }
+        .link-button:hover {
+            color: gray;
+        }
+
+        #sidebar { 
+            z-index: 20;
+            position: fixed; 
+            margin-left: 10px;
+            top: 45;
+            left: 0; 
+            width: 200px; 
+            height: 100%; 
+            overflow-y: auto; 
+        } 
+ 
+        #sidebar h3 { 
+            margin-bottom: 10px; 
+        } 
+ 
+        #sidebar ul { 
+            list-style-type: none; 
+            padding: 0; 
+            margin: 0; 
+        } 
+ 
+        #sidebar li { 
+            margin-bottom: 5px; 
+        } 
+ 
+        #sidebar li a { 
+            text-decoration: none; 
+            display: inline-block;
+            transition: transform 0.2s;
+            color: #000; 
+        } 
+
+        #sidebar li.selected { 
+            font-weight: bold; 
+            background-color: #abd6d9;
+            border-radius: 2px;
+            border: 1.5px outset black;
+            
+        } 
+ 
+        #sidebar a:hover { 
+            transform: scale(0.95);
+        }
+
+
+
+        .image-container {
+            text-align: center;
+            margin-left: 10px;
+            margin-right: 10px;
+            text-decoration: none;
+            width: 125px;
+            height: 125px;
+            padding: 10px;
+            border-radius: 50%;
+            transition: background-color 0.2s;
+        }
+        
+        .image-container:hover {
+            background-color: #f0f0f0;
+        } 
+
+        .image-container[href^="https://tabletka.by/"]:hover {
+            background-color: rgb(195, 250, 210);
+            
+        } 
+
+        .image-container[href^="https://www.103.by/"]:hover {
+            background-color: rgb(255, 235, 235);
+            
+        } 
+
+        .image-container img {
+            max-width: 125px;
+            height: 125px;
+            border-radius: 50%;
+            transition: transform 1s ease;
+        }
+
+        @keyframes lift-rotate-return {
+            0% {
+                transform: translateY(0); /* Начальное положение */
+            }
+            50% {
+                transform: translateY(-40px); /* Подъем */
+            }
+            75% {
+                transform: translateY(-40px) rotateY(360deg); /* Подъем и вращение */
+            }
+            100% {
+                transform: translateY(0); /* Возврат в исходное положение */
+            }
+        }
+
+        .image-container img:hover {
+            animation: lift-rotate-return 1.5s forwards;
+        }
+
+        .logo-container {
+            text-align: center;
+            margin-left: 10px;
+            margin-right: 10px;
+            text-decoration: none;
+        }
+        
+        .logo-container img {
+            max-width: 180px;
+            height: 125px;
+            border-radius: 10px;
+        }
+        
+        .caption {
+            font-family: "Playwrite GB S";
+            font-size: 20px;
+            color: black;
+            margin-top: 15px;
+            letter-spacing: 1px;
+            font-weight: 100;
+        }
+        
+        #right-sidebar { 
+            float: right; 
+            padding: 20px; 
+            
+            border-radius: 10px;
+        } 
+ 
+        #right-sidebar h3 { 
+            font-size: 18px; 
+            margin-bottom: 15px; 
+            text-align: center; 
+        } 
+ 
+        .advertisement { 
+            margin-bottom: 20px; 
+            text-align: center; 
+        } 
+ 
+        .advertisement img { 
+            width: 100%;  
+            height: auto;  
+            max-width: 280px;  
+            border: 4px outset #ccc;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;  
+        }
+
+       #scarf {
+            background-color: brown;
+            height: 30px;
+            width: 65px;
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            border-radius: 50px 100px 20px 30px;
+            z-index: 10;
+            animation: fadeOut_elements 2s forwards 10.8s; 
+        }
+
+        #scarf::after { 
+            content: '';
+            position: absolute;
+            bottom: -30px; 
+            right: 5px; 
+            width: 17.5px; 
+            height: 40px; 
+            background-color: brown; 
+            border-radius: 0px 0px 10px 10px; 
+        }
+      
+         @keyframes fadeOut_elements {
+            0% {
+                opacity: 1; /* Полная видимость */
+            }
+            100% {
+                opacity: 0; /* Полная прозрачность */
+            }
+        }
+
+        .cap {
+            width: 100px;
+            height: 30px;
+            background-color: darkblue; /* Цвет кепки */
+            position: absolute;
+            top: 0px; /* Положение кепки */
+            left: 0; /* Центрируем кепку */
+            border-radius: 10px 10px 0 0; /* Скругление верхней части */
+            z-index: 5; /* Кепка над головой */
+        }
+
+        .cap::before {
+            content: '';
+            width: 100px;
+            height: 10px;
+            background-color: darkblue;
+            position: absolute;
+            top: -10px; /* Сдвинем немного вверх */
+            left: -10px; /* Центрируем кепку */
+            border-radius: 10px;
+        }
+
+        
+
+        .face {
+            width: 100px;
+            height: 100px;
+            background-color: #ffe0bd;
+            border-radius: 50%;
+            position: relative;
+            margin: 50px auto;
+            border: 1px solid black;
+        }
+
+        .eye {
+            width: 15px;
+            height: 15px;
+            background-color: white;
+            border: 2px solid black;
+            border-radius: 50%;
+            position: absolute;
+            top: 35px;
+            animation: blink 5s infinite; /* Анимация моргания */
+        }
+
+        .eye.left {
+            left: 20px;
+        }
+
+        .eye.right {
+            right: 20px;
+        }
+
+        .pupil {
+            width: 6px; /* Размер зрачка */
+            height: 8px; /* Размер зрачка */
+            background-color: black; /* Цвет сетчатки */
+            border-radius: 50%;
+            position: absolute;
+            top: 4px; /* Положение зрачка внутри глаза */
+            left: 4px; /* Положение зрачка внутри глаза */
+            animation: pupil-blink 5s infinite; /* Применение анимации к зрачкам */
+        }
+
+        .eyelid {
+            width: 15px;
+            height: 2.5px;
+            background-color: #000;
+            position: absolute;
+            top: 32.5px;
+            transition: height 0.2s ease; 
+        }
+
+        .eyelid.left {
+            left: 20px;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .eyelid.right {
+            right: 20px;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .mouth {
+            width: 30px;
+            height: 1px;
+            background-color: pink;
+            border: 3px solid #000;
+            border-radius: 0 0 15px 15px;
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: changeMouth 3.5s forwards 10.8s; 
+        }
+
+        .body {
+            width: 90px;
+            height: 110px;
+            background-color: #FFC300;
+            position: relative;
+            margin: 0 auto;
+            border-radius: 30px 30px 0px 0px;
+            top: -60px;
+            border: 1px solid black;
+          
+       
+        }
+
+        .arm {
+            width: 11px;
+            height: 60px;
+            background-color: #ffe0bd;
+            position: absolute;
+            border-radius: 30px;
+            top: 10px;
+            border: 0.5px solid black;
+        }
+
+        .arm.left {
+            left: -15px;
+            transform: rotate(15deg);
+        }
+
+        .arm.right {
+            right: -15px;
+            transform: rotate(-15deg);
+        }
+      
+        .customer {
+            /* transform: rotate(-20deg); */
+            position: absolute; /* Чтобы дочерние элементы располагались относительно него */
+            top: 150px; /* Сдвигаем вниз */
+            left: 1100px; /* Центрируем */
+            transform-origin: top center; /* Задаем точку вращения */
+            
+            animation: walk 3.5s forwards, normal_cus 3.5s forwards 10.8s, walk_away 3.5s forwards 14.5s, fadeOut_elements 2.5s forwards 18.5s;
+
+        }
+
+        @keyframes blink {
+            0%, 20% {
+                height: 15px; /* Открытые глаза */
+            }
+            10% {
+                
+                height: 0px; /* Закрытые глаза */
+            }
+            30%, 100% {
+                height: 15px; /* Открытые глаза */
+            }
+        }
+
+        @keyframes pupil-blink {
+            0%, 30%, 100% {
+                opacity: 1; /* Зрачок виден */
+            }
+            5%, 10%, 20% {
+                opacity: 0; /* Зрачок скрыт */
+            }
+        }
+      
+       @keyframes changeMouth {
+            0%, 20% {
+                height: 0.1px; /* Сжатый рот */
+            }
+            30%, 100% {
+                height: 15px; /* Обычный рот */
+            } 
+        } 
+      
+      @keyframes walk {
+            0% {
+                transform: translate(0, 0) rotate(-15deg); /* Начальное положение */
+            }
+            10% {
+                transform: translate(-30px, -15px) rotate(-15deg); /* Первый шаг */
+            }
+            20% {
+                transform: translate(-60px, 0) rotate(-15deg); /* Второй шаг */
+            }
+            30% {
+                transform: translate(-90px, -15px) rotate(-15deg); /* Третий шаг */
+            }
+            40% {
+                transform: translate(-120px, 0) rotate(-15deg); /* Четвертый шаг */
+            }
+            50% {
+                transform: translate(-150px, -15px) rotate(-15deg); /* Пятый шаг */
+            }
+            60% {
+                transform: translate(-180px, 0) rotate(-15deg); /* Шестой шаг */
+            }
+            70% {
+                transform: translate(-210px, -15px) rotate(-15deg); /* Седьмой шаг */
+            }
+            80% {
+                transform: translate(-240px, 0) rotate(-15deg); /* Восьмой шаг */
+            }
+            90% {
+                transform: translate(-270px, -15px) rotate(-15deg); /* Девятый шаг */
+            }
+            100% {
+                transform: translate(-300px, 0) rotate(-15deg); /* Конечное положение */
+            } 
+        }
+
+        @keyframes walk_away {
+            0% {
+                transform: translate(-300px, 0) ; /* Начальное положение */
+            }
+            10% {
+                transform: translate(-240px, -15px) ; /* Первый шаг */
+            }
+            20% {
+                transform: translate(-210px, 0) ; /* Второй шаг */
+            }
+            30% {
+                transform: translate(-180px, -15px) ; /* Третий шаг */
+            }
+            40% {
+                transform: translate(-150px, 0) ; /* Четвертый шаг */
+            }
+            50% {
+                transform: translate(-120px, -15px); /* Пятый шаг */
+            }
+            60% {
+                transform: translate(-90px, 0); /* Шестой шаг */
+            }
+            70% {
+                transform: translate(-60px, -15px); /* Седьмой шаг */
+            }
+            80% {
+                transform: translate(-30px, 0) ; /* Восьмой шаг */
+            }
+            90% {
+                transform: translate(0, -15px); /* Девятый шаг */
+            }
+            100% {
+                transform: translate(30px, 0); /* Конечное положение */
+            } 
+        }
+
+      .cap_doc {
+            width: 100px;
+            height: 30px;
+            background-color: white; /* Цвет кепки */
+            border: 1px solid black;    
+            position: absolute;
+            top: 0px; /* Положение кепки */
+            left: 0; /* Центрируем кепку */
+            border-radius: 10px 10px 0 0; /* Скругление верхней части */
+            z-index: 5; /* Кепка над головой */
+        }
+
+        .cap_doc::before {
+            content: '';
+            width: 100px;
+            height: 10px;
+            background-color: white; /* Цвет кепки */
+            border: 1px solid black;    
+            position: absolute;
+            top: -10px; /* Сдвинем немного вверх */
+            left: 15px; /* Центрируем кепку */
+            border-radius: 10px;
+        }
+
+        
+
+        .face_doc {
+            width: 100px;
+            height: 100px;
+            background-color: #ffe0bd;
+            border-radius: 50%;
+            position: relative;
+            margin: 50px auto;
+            border: 1px solid black;
+        }
+
+        .eye_doc {
+            width: 15px;
+            height: 15px;
+            background-color: white;
+            border: 2px solid black;
+            border-radius: 50%;
+            position: absolute;
+            top: 35px;
+            animation: blink 5s infinite; /* Анимация моргания */
+        }
+
+        .eye_doc.left {
+            left: 20px;
+        }
+
+        .eye_doc.right {
+            right: 20px;
+        }
+
+        .pupil_doc {
+            width: 6px; /* Размер зрачка */
+            height: 8px; /* Размер зрачка */
+            background-color: blue; /* Цвет сетчатки */
+            border-radius: 50%;
+            position: absolute;
+            top: 4px; /* Положение зрачка внутри глаза */
+            left: 7px; /* Положение зрачка внутри глаза */
+            animation: pupil-blink 5s infinite; /* Применение анимации к зрачкам */
+        }
+
+        .eyelid_doc {
+            width: 15px;
+            height: 2.5px;
+            background-color: #000;
+            position: absolute;
+            top: 32.5px;
+            transition: height 0.2s ease; /* Плавное изменение высоты */
+        }
+
+        .eyelid_doc.left {
+            left: 20px;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .eyelid_doc.right {
+            right: 20px;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .mouth_doc { 
+            width: 30px;
+            height: 1px;
+            background-color: pink;
+            border: 3px solid #000;
+            border-radius: 0 0 15px 15px;
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            /* animation: changeMouth 5s infinite; */
+        }
+
+        .body_doc {
+            width: 90px;
+            height: 110px;
+            background-color: white; /* Цвет кепки */
+            border: 1px solid black;    
+            position: relative;
+            margin: 0 auto;
+            border-radius: 30px 30px 0px 0px;
+            top: -60px;
+        }
+
+        .eye_doc.left .pupil,
+        .eye_doc.right .pupil {
+            animation: pupil-blink 5s infinite; /* Анимация скрытия зрачков */
+        } 
+      
+      .doctor{
+            position: absolute;
+            top: 150px; /* Сдвинем немного вверх */
+            left: 450px; /*750*/
+
+            animation: fadeOut_elements 2.5s forwards 20.5s;
+      }
+      
+      
+      .counter {
+        position: absolute;
+        width: 150px;
+        height: 150px;
+        border-radius: 30px 30px 0 0;
+        background-color: #5C4033; /* Цвет прилавка */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Тень для прилавка */
+
+        top: 251px;
+        left:580px; /*880*/
+
+        animation: fadeOut_elements 2.5s forwards 20.5s;
+    }
+
+    .counter::before {
+        content: '';
+        position: absolute;
+        top: 20px; /* Положение полки */
+        left: 5%;
+        width: 90%;
+        height: 10px;
+        background-color: #8B4513; /* Цвет полки */
+        border-radius: 5px; /* Скругление углов */
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Тень для полки */
+    }
+      
+      .floor {
+        width: 80%; /* Ширина на всю ширину экрана */
+        height: 30px; /* Высота пола */
+        background-color: darkgray; /* Цвет пола (коричневый) */
+        position: absolute; /* Позиционирование */
+        bottom: 523; /* Положение внизу */
+        left: 50%; /* Сдвинуть влево */
+        transform: translateX(-50%); /* Центрирование */
+        z-index: -1; /* За человечком */
+
+        animation: fadeOut_elements 2.5s forwards 20.5s;
+    }
+      .pug1 {
+            width: 10px; /* Диаметр пуговицы */
+            height: 10px; /* Диаметр пуговицы */
+            background-color: black; /* Цвет пуговицы */
+            border-radius: 50%; /* Закругленная форма */
+            position: absolute; /* Позиционирование */
+            top: 22px; /* Положение на теле */
+            left: 50%; /* Центрируем */
+            transform: translateX(-50%); /* Центрирование */
+        }
+        .pug2 {
+            width: 10px; /* Диаметр пуговицы */
+            height: 10px; /* Диаметр пуговицы */
+            background-color: black; /* Цвет пуговицы */
+            border-radius: 50%; /* Закругленная форма */
+            position: absolute; /* Позиционирование */
+            top: 60px; /* Положение на теле */
+            left: 50%; /* Центрируем */
+            transform: translateX(-50%); /* Центрирование */
+        }
+      
+        .medicine-bottle {
+            position: absolute;
+            
+            width: 60px; /* Ширина бутылки */
+            height: 60px; /* Высота бутылки */
+            margin: 50px auto; /* Центрирование по горизонтали */
+            top: 40px; 
+            left: 150px;
+            transform: scale(0);
+            animation: appear 3.5s forwards 3.5s, fly 3.5s forwards 7s, disappear 1.5s forwards 10.5s;
+          
+            z-index: 20; 
+        }
+
+        .medicine-bottle img{
+            width: 60px; /* Ширина бутылки */
+            height: 60px; /* Высота бутылки */
+        }
+      
+        @keyframes appear {
+            0% {
+                opacity: 0; /* Начальная невидимость */
+                transform:  scale(0); /* Уменьшение */
+            }
+            100% {
+                opacity: 1; /* Полная видимость */
+                transform: scale(1); /* Обычный размер */
+            }
+        }
+
+        
+        
+      
+      @keyframes fly {
+            0% {
+                transform: translate(0px, -15px); /* Начальное положение под экраном */
+            }
+            100% {  
+                transform: translate(465px, 128px) /* Конечное положение */
+            } 
+        } 
+
+        @keyframes disappear {
+            0% {
+                opacity: 1; /* Элемент полностью видим */
+            }
+            100% {
+                opacity: 0; /* Элемент становится невидимым */
+            }
+        }
+      
+      @keyframes normal_cus {
+        0% {
+            transform: translate(-300px, 0) rotate(-15deg); /* Начальное положение (соответствует окончанию walk) */
+        }
+        100% {  
+            transform: translate(-300px, 0) rotate(0deg); /* Конечное положение после поворота */
+        } 
+      }
+
+      
+    
+    @keyframes fadeIn {
+        from {
+            opacity: 0; /* Начальная прозрачность */
+        }
+        to {
+            opacity: 1; /* Конечная прозрачность */
+        }
+    }
+
+    .alll{
+        height: 320px;
+        width: 80%;
+        border: 2px outset #ccc;
+        padding: 20px;
+        margin: 0 auto; /* Центрируем элемент по горизонтали */
+        background-color: 
+    }
+
+    .alll:hover{
+        border: 2px outset black;
+    }
+
+    .alll span{
+        font-size: 100px;
+        position: absolute;
+        top: 165px; /* Сдвинем немного вверх */
+        left: 480px; /*750*/
+        
+        transform: scale(0);
+
+        animation: fadeOut 4s forwards 23.5s;
+    }
+
+    .line {
+        position: absolute;
+        background-color: black; /* Цвет линии */
+
+        animation: fadeOut_elements 2.5s forwards 20.5s;
+    }
+
+    .line.horizontal {
+        width: 60px; /* Длина горизонтальной линии */
+        height: 20px; /* Толщина линии */
+        background-color: red;
+        border-radius: 10px;
+        top: 320px; /* Сдвинем немного вверх */
+        left: 625px; /*750*/
+        
+        animation: fadeOut_elements 2.5s forwards 20.5s;
+    }
+
+    .line.vertical {
+        width: 20px; /* Толщина линии */
+        height: 60px; /* Длина вертикальной линии */
+        background-color: red;
+        border-radius: 10px;
+        top: 300px;
+        left: 645px; /*750*/
+
+        animation: fadeOut_elements 2.5s forwards 20.5s;
+    }
+
+    .door {
+        width: 125px; /* Ширина двери */
+        height: 200px; /* Высота двери */
+        background-color: #8B4513; /* Цвет двери */
+        border: 2px solid #654321; /* Рамка двери */
+        position: absolute;
+        border-radius: 5px; /* Закругленные углы */
+        transform-origin: center left;
+        top: 200px;
+        left: 1100px; /*750*/
+        transform: rotateY(-90deg) rotateX(0deg);
+
+        z-index: -1;
+
+        animation: closeDoor 3s forwards 1.5s, openDoor 3s forwards 14.5s, closeDoor 3s forwards 18.5s, fadeOut_elements 2.5s forwards 20.5s;
+    }
+
+    .groove{
+        width: 10px; /* Ширина двери */
+        height: 200px; /* Высота двери */
+        border: 2px solid #654321; /* Рамка двери */
+        position: absolute;
+        background-color: #8B4513; /* Цвет двери */
+        top: 200px;
+        left: 1100px; /*750*/
+
+        animation: fadeOut_elements 2.5s forwards 20.5s;
+
+        z-index: -1;
+    }
+
+    .handle {
+        width: 10px; /* Ширина ручки */
+        height: 25px; /* Высота ручки */
+        background-color: #FFD700; /* Цвет ручки */
+        position: absolute;
+        right: -10px; /* Позиция ручки по горизонтали */
+        top: 50%; /* Центр по вертикали */
+        transform: translateY(-50%); /* Центрирование по вертикали */
+        border-radius: 10px; /* Закругленные углы ручки */
+
+        animation: fadeOut_elements 2.5s forwards 20.5s;
+    }
+
+    @keyframes fadeOut {
+        from {
+            transform: scale(0);
+        }
+        to {
+            transform: scale(1);
+        }
+    }
+
+    @keyframes openDoor {
+        0% {
+            transform: rotateY(0deg) rotateX(0deg);
+        }
+        100% {
+            transform: rotateY(-90deg) rotateX(0deg); /* Поворот по оси Y для эффекта открытия */
+        }
+    }
+
+    @keyframes closeDoor {
+        0% {
+            
+            transform: rotateY(-90deg) rotateX(0deg);
+        }
+        100% {
+            transform: rotateY(0deg) rotateX(0deg);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+    .slider-container {
+        position: relative;
+        max-width: 800px;
+        margin: auto;
+        overflow: hidden;
+
+        border: 0px outset gray;
+
+        border-radius: 5px;
+    }
+    
+    .slider {
+        display: flex;
+        transition: transform 0.5s ease;
+    }
+    
+    .slide {
+        min-width: 100%;
+        display: none;
+        flex-shrink: 0;
+        text-align: center;
+    }
+    
+    .slide img {
+        width: 800px;
+        height: 400px;
+        display: block;
+    }
+    
+    .slide.active {
+        display: block;
+    }
+    
+    .slide_caption {
+        font-size: 1.2em;
+        padding: 10px;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        background: transparent;  /* Чтобы текст был читаем на любых фонах */
+        width: 100%;
+        text-align: center;
+        color: white;
+    }
+    
+    .slide-counter {
+        position: absolute;
+        top: 3px;
+        left: 10px;
+        font-size: 1em;
+        color: white;
+    }
+    
+    .prev, .next {
+        font-family: "Concert One", sans-serif;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        font-size: 40px;
+        background: transparent;
+        color: #fff;
+        border: none;
+        width: 50px;
+        height: 400px;
+        text-align: center;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .prev {
+        left: 0;
+    }
+    
+    .prev:hover {
+        background: linear-gradient(to left, rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.1));
+    }
+    
+    .next {
+        right: 0;
+    }
+    
+    .next:hover {
+        background: linear-gradient(to right, rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.1));
+    }
+    
+    #pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+    
+    .dot {
+        width: 15px;
+        height: 15px;
+        margin: 5px;
+        background-color: rgb(210, 210, 210, 210);
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+
+        transition: background-color 0.6s ease;
+    }
+
+    .dot:hover{
+        background-color: #717171;
+    }
+    
+    .dot.active {
+        background-color: #717171;
+    }
+    
+    .slide-counter {
+        font-family: "Montserrat", sans-serif;
+        text-align: center;
+        margin-top: 5px;
+        font-size: 1em;
+    }
+
+    .fade {
+        animation-name: fade;
+        animation-duration: 1.5s;
+    }
+      
+    @keyframes fade {
+        from {opacity: .4}
+        to {opacity: 1}
+    }
+
+    #top{
+        z-index: 40;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #top::before{
+        content:'';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height:200px;
+        width: 100%;
+        background:linear-gradient(to top,#fff,transparent);
+        z-index: 1000;
+    }
+
+    #top img{
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        pointer-events: none;
+    }
+
+    #bottle_right{
+        right: 0;
+        position: absolute;
+    }
+
+    #bottle1{
+        position: absolute;
+        width: 80px; 
+        margin-left: 100px;
+        z-index: 1;
+    }
+
+    #bottle2{
+        position: absolute;
+        width: 80px; 
+        margin-left: 100px;
+        z-index: 1;
+    }
+
+    #bottle3{
+        position: absolute;
+        width: 75px; 
+        margin-left: 100px;
+        z-index: 1;
+    }
+
+    #bottle1, #bottle2, #bottle3 {
+        transition: transform 0.1s ease-out;  /* Плавность вращения */
+      }
+      
+    
+    #text{
+        position: relative;
+    }
+    </style>
+</head>
+
+{% extends "base.html" %}
+
+{%block title%}Главная{%endblock%}
+
+{% block refs%}{% endblock refs%}
+
+{% block content %}
+<body>
+    <main>
+    {% comment %} <div class="alll">
+        <div class="customer">  
+        
+            <div class="face"> 
+                <div class="cap"></div>
+                <div class="eye left">
+                    <div class="pupil"></div>
+                </div>
+                <div class="eye right">
+                    <div class="pupil"></div>
+                </div>
+                <div class="eyelid left"></div>
+                <div class="eyelid right"></div>
+                <div class="mouth"></div>
+            </div>
+            <div class="body">
+                <div id="scarf"></div>
+                <div class="pug1"></div>
+                <div class="pug2"></div>
+                <div class="arm left"></div>
+                <div class="arm right"></div>
+            </div>
+        </div>
+      
+        
+      
+        <div class="counter"></div>
+        <div class="floor"></div>
+        <div class="line horizontal"></div>
+        <div class="line vertical"></div>
+        <div class="door">
+            <div class="handle"></div>
+        </div>
+        <div class="groove"></div>
+      
+      <div class="doctor">  
+            
+            <div class="face_doc">
+              <div class="cap_doc"></div>
+                <div class="eye_doc left">
+                    <div class="pupil_doc"></div>
+                </div>
+                <div class="eye_doc right">
+                    <div class="pupil_doc"></div>
+                </div>
+                <div class="eyelid_doc left"></div>
+                <div class="eyelid_doc right"></div>
+                <div class="mouth_doc"></div>
+            </div>
+            <div class="body_doc">
+                <div class="pug1" style="background-color: silver;"></div>
+                <div class="pug2" style="background-color: silver;"></div>
+                <div class="arm left"></div>
+                <div class="arm right"></div>
+            </div>
+          
+          
+        </div>
+            <div class="medicine-bottle">
+                {% load static %}
+                <img src="{% static 'images/med_bottle.png' %}"> 
+            </div>
+
+            <span>APTEKA ONLINE BY</span>
+    </div> {% endcomment %}
+
+    <section id="top">
+        {% load static %}
+        <img src="{% static 'images/ph.jpg' %}" id="bg" />
+        <text id="text" style="color: white; text-shadow: 
+        2px 2px 0 black, 
+        -2px -2px 0 black,  
+        2px -2px 0 black,  
+        -2px 2px 0 black; font-size: 100px; z-index: 100;">APTEKA ONLINE BY</text>
+        {% load static %}
+        <img style="width: 400px; left: 0; z-index: 101;" src="{% static 'images/s1.png' %}" id="bottle_left" />
+        {% load static %}
+        <img style="width: 455px; z-index: 101;" src="{% static 'images/s2.png' %}" id="bottle_right" />
+    </section>
+
+    <h1 style="margin-top: 40px;" class="center">Важные события аптеки:</h1>
+    
+    {% load static %}
+    <img style="margin-left: 250px;" src="{% static 'images/bottle1.png' %}" id="bottle1" />
+
+    {% load static %}
+    <img style="margin-top: 100px;" src="{% static 'images/bottle2.png' %}" id="bottle2" />
+
+    {% load static %}
+    <img style="margin-top: 230px; margin-left: 240px;" src="{% static 'images/bottle3.png' %}" id="bottle3" />
+
+    <div class="slider-container">
+        <div class="slider">
+            <!-- Каждый слайд состоит из изображения, заголовка и ссылки -->
+            <div class="slide active fade">
+                {% load static %}
+                <a href="https://lifestylemedicine.org/clmi/"><img src="{% static 'images/med1.jpg' %}" alt="Описание 1"></a>
+                <div class="slide_caption">Reddot winner 2021</div>
+            </div>
+            <div class="slide fade">
+                {% load static %}
+                <a href="https://innerspacehealthcare.com/resources/"><img src="{% static 'images/med2.jpg' %}" alt="Описание 2"></a>
+                <div class="slide_caption">Исследовательский центр в США</div>
+            </div>
+            <div class="slide fade">
+                {% load static %}
+                <a href="https://medicushcs.com/resources/internal-medicine-day-recognizing-the-impact-of-internal-medicine-physicians-in-healthcared"><img src="{% static 'images/med3.jpg' %}" alt="Описание 3"></a>
+                <div class="slide_caption">Pain-aids</div>
+            </div>
+        </div>
+
+        
+
+        <!-- Кнопки "вперед" и "назад" -->
+        <div id="navs_all">
+          <button id="prev_nav" class="prev"><</button>
+          <button id="next_nav" class="next">></button>
+        </div>
+        <!-- Пагинация -->
+        
+
+        <!-- Показ номера слайда -->
+        <div class="slide-counter">1/3</div>
+    </div>
+
+    
+
+    <div id="pagination">
+        <button class="dot active" data-index="0"></button>
+        <button class="dot" data-index="1"></button>
+        <button class="dot" data-index="2"></button>
+        {%if request.COOKIES.admin == "True"%}
+        <input id="elem1122" type="button" value="Изменить задержку">
+        {%endif%}
+    </div>
+
+    <aside id="right-sidebar"> 
+            <h3>Реклама</h3> 
+            <div class="advertisement"> 
+                {% load static %}
+                <img src="{% static 'images/ad4.jpg' %}" alt="Ad 1"> 
+                <figcaption style="margin-top: 10px; font-size: 20px;">Реклама 1</figcaption>
+            </div> 
+            <div class="advertisement"> 
+                {% load static %}
+                <img src="{% static 'images/ad5.png' %}" alt="Ad 2"> 
+                <figcaption style="margin-top: 10px; font-size: 20px;">Реклама 2</figcaption>
+            </div>
+            <div class="advertisement"> 
+                {% load static %}
+                <img src="{% static 'images/ad6.jpg' %}" alt="Ad 3"> 
+                <figcaption style="margin-top: 10px; font-size: 20px;">Реклама 3</figcaption>
+            </div>
+
+            <div class="advertisement"> 
+                {% load static %}
+                <img src="{% static 'images/ad7.jpg' %}" alt="Ad 4"> 
+                <figcaption style="margin-top: 10px; font-size: 20px;">Реклама 4</figcaption>
+            </div>
+
+            <div class="advertisement"> 
+                {% load static %}
+                <img src="{% static 'images/ad1.jpg' %}" alt="Ad 5"> 
+                <figcaption style="margin-top: 10px; font-size: 20px;">Реклама 5</figcaption>
+            </div>
+
+            <div class="advertisement"> 
+                {% load static %}
+                <img src="{% static 'images/ad2.jpg' %}" alt="Ad 6"> 
+                <figcaption style="margin-top: 10px; font-size: 20px;">Реклама 6</figcaption>
+            </div>
+        </aside>
+
+
+        <aside id="sidebar"> 
+            <h3>Заказы</h3> 
+    
+            {% if request.COOKIES.username %}
+                <p>Общее кол-во заказов: {{user_ord}}</p> 
+                <div id="countdown"></div>
+                <button id="reset_button" onClick="resetFoo()" hidden>Начать заново</button>
+            {% else %}
+                <p>Войдите чтобы увидеть кол-во заказов.</p>
+                <div id="countdown"></div>
+                <button id="reset_button" onClick="resetFoo()" hidden>Начать заново</button>
+            {% endif %}
+    
+            
+            <h3>Категории</h3> 
+            <ul> 
+                {% for c in all_deps %} 
+                    <li {% if selected_type == c.type_of_medicine %}class="selected"{% endif %}> 
+                        <a href="?type_of_medicine={{ c.type_of_medicine }}">{{ c.type_of_medicine }}</a> 
+                    </li>
+                {% endfor %} 
+            </ul> 
+        </aside>
+
+
+    <div style="margin-left: 80px; margin-top: 40px;">
+        <h1 class="center">Последняя новость аптеки</h1>
+        <div class="news-container">
+            {%if news != "0"%}
+                <section class="news-item">
+                    <img style="border-radius: 10px;" class="image" src={{ news.news_png.url }}>
+                        <article style="word-wrap: break-word;">
+                            <p style="color: gray; font-size: 15px;">Дата: {{news.date_created}}</p>
+                            <p style="font-size: 18px; ">Содержание:  {{ news.news_message }}</p>
+                        </article>
+                </section>
+                <form action="news/" method="get">
+                    <button class="link-button" type="submit">Смотреть новости далее...</button>
+                </form>
+            {%else%}
+                <p>Нет новостей на текущий момент.</p>
+            {%endif%}
+        </div>
+
+        <section>
+            <h1 class="center" style="margin-top: 80px;">Отделы аптеки</h1>
+
+            <div class="med-container">
+                {%if deps|length != 0%}
+                    {% for element in deps %} 
+                        <div class="dep-card">
+                        <h3 style="margin-left: 10px;">Об отделе аптеки:</h3>
+                        <div style="margin-left: 10px; margin-right: 10px; word-wrap: break-word;">{{element.description}}</div>
+                        <div style="margin-top: 15px; margin-left: 10px; margin-right: 10px; word-wrap: break-word;">Тип медикаментов в отделе: {{element.type_of_medicine}}</div>
+                            
+                        {%if request.COOKIES.role == "True"%}
+                            <div style="margin-top: 15px; margin-left: 10px; margin-right: 10px; word-wrap: break-word;">Продано всего в отделе: {{" "}}{{element.all_sold_num}}{{" руб."}}</div>
+                        {%endif%}
+                        
+                            <form action="department/" method="get">
+                                {% csrf_token %}
+                                <input type="hidden" name="id" value={{ element.id }}>
+                                <button style="width: 100px; height: 30px;" type="submit">Ассортимент</button>
+                            </form>
+                        </div>
+                    {% endfor %}
+                {%else%}
+                    <p>Нет отделов на текущий момент.</p>
+                {%endif%}
+
+            </div>
+        </section>
+
+        <footer>
+            <h1 class="center">Партнеры аптеки:</h1>
+
+            <nav style="display: flex; margin-left: auto; margin-right: auto; justify-content: center;">
+                {%load static%}
+                <a class="logo-container">
+                    <img style="width: 170px;" src={{company.logo.url}} alt="Logo Image">
+                    <div class="caption"><b>Наша аптека</b></div>
+                </a>
+            </nav>
+
+            <nav style="margin-top: 20px; display: flex; margin-left: auto; margin-right: auto; justify-content: center;">
+                {%load static%}
+                <a class="image-container" href="https://www.103.by/">
+                    <img src={% static "images/103.png"%} alt="Logo Image">
+                    <div class="caption"><b>103.by</b></div>
+                </a>
+
+                <a class="image-container" href="https://tabletka.by/">
+                    <img src={% static "images/tabletka.png"%} alt="Logo Image" >
+                    <div class="caption"><b>tabletka.by</b></div>
+                </a>
+            </nav>
+        </footer>
+
+        
+    </div>
+
+    
+    
+    </main>
+    
+    
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.dot');
+            const counter = document.querySelector('.slide-counter');
+            let currentSlide = 0;
+            let loop = true;
+            let auto = true;  
+            let mouse = true;
+            let navs = true;
+            let pags = true;
+            let delay = 5000;
+
+            let right_board = false;
+            let left_board = false;
+
+
+            var elem = document.getElementById("elem1122");
+            if (elem) {  
+                elem.onclick = function (event) {
+                    let delay_input = parseFloat(prompt("Введите задержку в секундах:"));
+                    
+                    if(isNaN(delay_input)){
+                        alert("Не было ввода");
+                    }
+                    else if(delay_input <= 0){
+                        alert("Неправильный ввод, не будет учтен!");
+                    }
+                    else{
+                        delay = delay_input * 1000;
+                        alert("Задержка выставлена.");
+                    }
+                };
+            }
+
+
+            function showSlide(index) {
+                slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+                
+                if(pags){
+                    dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+                }
+                
+                counter.textContent = `${index + 1}/${slides.length}`;
+            }
+
+            function nextSlide() {
+                if(loop === false && currentSlide === (slides.length - 1)){
+                    right_board = true;
+                    
+                    let n_n = document.getElementById("next_nav");
+                    n_n.disabled = true;
+                }
+                else{
+                    if(left_board === true){
+                        let n_p = document.getElementById("prev_nav");
+                        n_p.disabled = false;
+                        left_board = false;
+                    }
+                    
+                    currentSlide = (currentSlide + 1) % slides.length;
+                }
+                
+                showSlide(currentSlide);
+            }
+
+            function prevSlide() {
+                if(loop === false && currentSlide === 0){
+                    left_board = true;
+                    
+                    let n_p = document.getElementById("prev_nav");
+                    n_p.disabled = true;
+                }
+                else{
+                    if(right_board === true){
+                        let n_n = document.getElementById("next_nav");
+                        n_n.disabled = false;
+                        right_board = false;
+                    }
+                    
+                    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                }
+                
+                
+                
+                showSlide(currentSlide);
+            }
+
+            if(!navs){
+                let n = document.getElementById("navs_all");
+                n.hidden = true;
+            }
+            else{
+                document.querySelector('.next').addEventListener('click', nextSlide);
+                document.querySelector('.prev').addEventListener('click', prevSlide);
+            }
+
+            if(!pags){
+                let p = document.getElementById("pagination");
+                p.hidden = true;
+
+                let children = p.querySelectorAll('*'); 
+
+                children.forEach(child => {
+                    child.hidden = true;
+                });
+            }
+            else{
+                dots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => {
+                        currentSlide = index;
+
+                        if(loop === false && currentSlide === (slides.length - 1)){
+                            right_board = true;
+                            
+                            let n_n = document.getElementById("next_nav");
+                            n_n.disabled = true;
+
+                            let n_p = document.getElementById("prev_nav");
+                            n_p.disabled = false;
+                            left_board = false;
+                        }
+
+                        if(loop === false && currentSlide === 0){
+                            left_board = true;
+                            
+                            let n_p = document.getElementById("prev_nav");
+                            n_p.disabled = true;
+
+                            let n_n = document.getElementById("next_nav");
+                            n_n.disabled = false;
+                            right_board = false;
+                        }
+
+                        showSlide(currentSlide);
+                    });
+                });
+            }
+
+            let autoSlideInterval;
+
+            if (auto) {
+                autoSlideInterval = setInterval(nextSlide, delay);
+                
+                if(mouse){
+                    document.querySelector('.slider-container').addEventListener('mouseover', () => clearInterval(autoSlideInterval));
+                    document.querySelector('.slider-container').addEventListener('mouseleave', () => autoSlideInterval = setInterval(nextSlide, delay));
+                }
+            }
+
+            showSlide(currentSlide);
+        });
+    </script>
+    
+    <script>
+        function resetFoo() {
+            localStorage.removeItem('endTime');
+            document.getElementById('reset_button').hidden = true;
+            let endTime = new Date().getTime() + (60 * 60 * 1000); 
+            localStorage.setItem('endTime', endTime);
+
+            updateTimer();
+        }
+    </script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            function updateTimer() {
+                const countdownElement = document.getElementById('countdown');
+                const endTime = localStorage.getItem('endTime');
+                const now = new Date().getTime();
+                const distance = endTime - now;
+    
+                if (distance < 0) {
+                    document.getElementById('reset_button').hidden = false;
+                    countdownElement.innerHTML = "Время истекло!";
+                    clearInterval(timerInterval);
+                    return;
+                }
+    
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+                countdownElement.innerHTML = `${hours}ч ${minutes}м ${seconds}с`;
+            }
+    
+            if (!localStorage.getItem('endTime')) {
+                const endTime = new Date().getTime() + (60 * 60 * 1000); 
+                localStorage.setItem('endTime', endTime);
+            }
+    
+            const timerInterval = setInterval(updateTimer, 1000);
+            updateTimer(); 
+        });
+    </script>
+
+    <script>
+        const bLeft = document.querySelector('#bottle_left');
+        const bRight = document.querySelector('#bottle_right');
+        const text = document.querySelector('#text');
+        
+        window.addEventListener('scroll',()=>{
+            let value = scrollY;
+            bLeft.style.left = `-${value/0.7}px`
+            bRight.style.right = `-${value/0.7}px`
+            text.style.bottom = `-${value}px`;
+        })
+    </script>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            const scrollY = window.scrollY || window.pageYOffset;
+          
+            const shakeIntensity1 = Math.sin(scrollY * 0.02) * 18; 
+            const shakeIntensity2 = Math.sin(scrollY * 0.01) * 15; 
+            const shakeIntensity3 = Math.sin(scrollY * 0.009) * 20;
+          
+            document.getElementById('bottle1').style.transform = `rotate(${shakeIntensity1}deg) translateX(${shakeIntensity1}px)`;
+            document.getElementById('bottle2').style.transform = `rotate(${shakeIntensity2}deg) translateX(${shakeIntensity2}px)`;
+            document.getElementById('bottle3').style.transform = `rotate(${shakeIntensity3}deg) translateX(${shakeIntensity3}px)`;
+          });
+          
+          
+    </script>
+</body>
+
+{% endblock content %}

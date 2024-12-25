@@ -1,0 +1,111 @@
+<head>
+    <style>
+        body{
+            font-family : "Roboto Flex", sans-serif;
+        }
+        
+        .center {
+            font-family: "Alumni Sans Collegiate One", sans-serif;
+            font-size: 50px;
+            font-weight: lighter;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .image {
+            width: 200px;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .news-container {
+            display: grid;
+            grid-template-columns: 1fr;
+    
+            gap: 20px;
+            
+            width: 60%;
+            height: auto;
+            border: 2px outset #ccc;
+            padding: 20px;
+            text-align: left;
+            margin: 0 auto;
+        }
+
+        .news-container p {
+            overflow-wrap: break-word;
+            word-break: break-word;
+        }
+
+        .news-item {
+            display: flex;
+            border: 2px outset #ccc;
+            padding: 5px;
+            align-items: center; /* Это выравнивает изображение и информацию по вертикали */
+            gap: 20px; /* Это добавляет пространство между изображением и информацией */
+            word-wrap: break-word;
+            transition: transform 0.3s;
+        }
+        
+        .news-item:hover {
+            transform: scale(1.02);
+            border: 2px outset black;
+        }
+
+        .link-button {
+            background: none;
+            color: black;
+            border: none;
+            text-decoration: none;
+            display: block;  
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+        .link-button:hover {
+            color: gray;
+        }
+    </style>
+</head>
+
+{% extends "base.html" %}
+
+{%block title%}Новости{%endblock%}
+
+{% block refs%}{% endblock refs%}
+
+{% block content %}
+
+<body>
+    <main>
+        
+        <header>
+            <h1 class="center">Новости аптеки</h1>
+        </header>
+        
+        <div class="news-container">
+            {%if news|length != 0%}
+                    {% for n in news %} 
+                        <section class="news-item">
+                            <img class="image" src={{ n.news_png.url }}>
+                            <article style="word-wrap: break-word;">
+                                    
+                                <p style="color: gray; font-size: 15px;">Дата: {{n.date_created}}</p>
+                                
+                                {% if n.news_message|length > 100 %}
+                                    <p style="font-size: 20px;">Содержание: {{ n.news_message|slice:":100" }}...</p>
+                                {% else %}
+                                    <p style="font-size: 20px;">Содержание: {{ n.news_message }}</p>
+                                {% endif %}
+                                <a class="link-button" href="/news/article?article_id={{ n.pk }}">Просмотреть новость полностью</a>
+                            </article>
+                        </section>
+                    {% endfor %}
+                {%else%}
+                    <p>Нет новостей на текущий момент.</p>
+                {%endif%}
+        </div>  
+    </main>
+</body>
+{% endblock content %}

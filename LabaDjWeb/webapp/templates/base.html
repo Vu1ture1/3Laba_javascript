@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans+Collegiate+One:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Concert+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
+    <style>
+        .nav {
+            display: flex;
+            font-family : "Roboto Flex", "Montserrat", sans-serif;
+        }
+        .nav a {
+            padding: 10px;
+            cursor: pointer;
+            font-size: 15px;
+            text-decoration: none;
+            color:black;
+            background-color: rgb(236, 249, 250);
+            border-radius: 5px;
+            /*transition: background-color 0.1s, transform 0.2s;*/
+        }
+        .nav a:hover {
+            background-color: black;
+            color: white;
+        }
+
+        .nav a:active {
+            //background-color: rgb(217, 221, 220);
+            transform: scale(0.95);
+        }
+
+        .nav a:focus {
+            //background-color: rgb(217, 221, 220);
+            box-shadow: 0 0 5px black;
+        }
+
+        body{
+            background-color: rgb(236, 249, 250);
+        }
+
+
+        #preloader {
+            width: 100px; 
+            height: 50px;
+            background: linear-gradient(to right, rgba(225, 225, 225) 50%, red 50%);
+
+            left: 50%;
+            top: 50%;
+
+            border-radius: 50px;
+            border: 1px solid gray;
+            position: fixed; 
+            overflow: hidden;
+            animation: spin 1s infinite linear; 
+            z-index: 1000;
+        }
+      
+        #preloader::before {
+            content: '';
+            position: absolute;
+            top: 15%;
+            left: 5%; 
+            right: 0; 
+            bottom: 0; 
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+            border-radius: 50px;
+            pointer-events: none; 
+          
+        }
+      
+       #shadow {
+            position: fixed;
+            width: 100px; 
+            height: 50px; 
+            border-radius: 50%; 
+            //background: lightgray; 
+            background-color: rgb(167, 182, 184);
+            top: 65%; 
+            left: 50%; 
+            transform: translate(-50%, -50%);
+            animation: pulse 1s infinite;
+            z-index: 1000; 
+            box-shadow: 0 4px 50px rgba(0, 0, 0, 0.5); 
+        }
+
+
+      @keyframes pulse {
+          0% {
+              transform: translate(-50%, -50%) scale(1);
+          }
+          50% {
+              transform: translate(-50%, -50%) scale(1.1); /* Увеличение */
+          }
+          100% {
+              transform: translate(-50%, -50%) scale(1); /* Возвращение к исходному */
+          }
+      }
+        
+        @keyframes spin {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg); /* Исправлено: добавлены скобки для угла */
+            }
+            to {
+                transform: translate(-50%, -50%) rotate(360deg); /* Исправлено: добавлены скобки для угла */
+            }
+        }
+    </style>
+
+    <title>{% block title %}База{% endblock %}</title>
+
+    <meta name="author" content="Maded by student Mikhail Kupreichyk from group 253503." />
+
+    <meta name="description" content="Проект по предмету STRWEB." />
+
+    {%load static%}
+
+    <link rel="icon" href="{% static "images/icon.png"%}" type="image/png">
+</head>
+<body>
+
+    <nav class="nav">
+        <a href="/">Отделы аптеки</a>
+        <a href="/faq">О аптеке и вакансиях</a>
+        <a href="/reviews">Наши отзывы</a>
+        <a href="/faq/contacts">Наши сотрудники</a>
+        <a href="/questions">Часто задаваемые вопросы</a>
+        <a href="/etc">Дополнительная информация</a>
+        {%if request.COOKIES.role == "True"%}
+            <a href="/suppliers">Поставщики</a>
+            <a href="/graph">График выручки</a>
+        {%endif%}
+        
+        {% block refs%}{% endblock refs%}
+
+        <div style="margin-left: auto; margin-top: 10px;">
+            {% if request.COOKIES.username %}
+                <a href="/basket">Корзина</a>
+                <a href="/account">Аккаунт</a>
+
+                {%if request.COOKIES.admin == "True"%}
+                    <a href="/admin">Панель админа</a>
+                {%endif%}
+
+                <a href="/logout">Выход</a>
+            {% else %}
+                <a href="/login">Вход</a>
+                <a href="/registration">Регистрация</a>
+            {% endif %}
+        </div>
+    </nav>
+    
+    <div style="margin-top: 20px;">
+    <div id="preloader"></div>
+    <div id="shadow"></div>
+    {% block content%}{% endblock content %}</div>
+
+    
+    <script>
+        let loader = document.getElementById("preloader")
+        let shadow = document.getElementById("shadow")
+
+        window.addEventListener("load", function(){
+            loader.style.display = "none";
+            shadow.style.display = "none";
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<head>
+    <style>
+        .center {
+            font-family: "Alumni Sans Collegiate One", sans-serif;
+            font-size: 50px;
+            font-weight: lighter;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .news-container {
+            font-family : "Roboto Flex", sans-serif;
+            gap: 20px;
+            
+            width: 60%;
+            height: auto;
+            border: 2px outset #ccc;
+            padding: 20px;
+            //text-align: left;
+            margin: 0 auto; 
+        }
+
+        .colls {
+            columns: 150px 3; 
+            column-gap: 20px; 
+            column-rule: 1px solid black;
+            overflow: auto;
+        }        
+
+        .news-container p {
+            overflow-wrap: break-word;
+            word-break: break-word;
+        }
+    </style>
+</head>
+
+{% extends "base.html" %}
+
+{%block title%}Новость{%endblock%}
+
+{% block refs%}{% endblock refs%}
+
+{% block content %}
+<body>
+    <main>
+        
+        <header>
+            <h1 class="center">Полное содержание новости</h1>
+        </header>
+        
+        <article class="news-container">
+            <p style="color: gray; font-size: 15px;">Дата: {{article.date_created}}</p>
+            
+            <div class="colls">
+                <text style="font-size: 20px;">{{ article.news_message }}</text>
+            </div>
+            
+        </article>  
+    <main>
+</body>
+{% endblock content %}

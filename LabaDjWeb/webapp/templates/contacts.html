@@ -1,0 +1,843 @@
+<head>
+    <style>
+        body{
+            font-family : "Roboto Flex", sans-serif;
+        }
+        
+        #addictional{
+            display: none;
+            flex-direction: column;
+            gap: 20px;
+            
+            width: 45%;
+            height: auto;
+            border: 2px outset #ccc;
+            
+           
+
+            padding: 20px;
+            text-align: left;
+            margin: 0 auto;
+
+            margin-top: 40px;
+        }
+        
+        .med-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            
+            width: 45%;
+            height: auto;
+            border: 2px outset #ccc;
+            
+            padding: 20px;
+            text-align: left;
+            margin: 0 auto;
+        }
+
+        .image {
+            width: 165px;
+            height: auto;
+            border-radius: 50%;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-left: 10px;
+        }
+
+        .med-item {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            word-wrap: break-word;
+            border: 2px outset #ccc;
+            transition: transform 0.3s;
+        }
+
+        .med-item:hover {
+            transform: scale(1.02);
+            border: 2px outset black;
+        }
+
+
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .checkbox-wrapper-19 {
+            box-sizing: border-box;
+            --background-color: #fff;
+            --checkbox-height: 25px;
+          }
+        
+          @-moz-keyframes dothabottomcheck-19 {
+            0% {
+              height: 0;
+            }
+            100% {
+              height: calc(var(--checkbox-height) / 2);
+            }
+          }
+        
+          @-webkit-keyframes dothabottomcheck-19 {
+            0% {
+              height: 0;
+            }
+            100% {
+              height: calc(var(--checkbox-height) / 2);
+            }
+          }
+        
+          @keyframes dothabottomcheck-19 {
+            0% {
+              height: 0;
+            }
+            100% {
+              height: calc(var(--checkbox-height) / 2);
+            }
+          }
+        
+          @keyframes dothatopcheck-19 {
+            0% {
+              height: 0;
+            }
+            50% {
+              height: 0;
+            }
+            100% {
+              height: calc(var(--checkbox-height) * 1.2);
+            }
+          }
+        
+          @-webkit-keyframes dothatopcheck-19 {
+            0% {
+              height: 0;
+            }
+            50% {
+              height: 0;
+            }
+            100% {
+              height: calc(var(--checkbox-height) * 1.2);
+            }
+          }
+        
+          @-moz-keyframes dothatopcheck-19 {
+            0% {
+              height: 0;
+            }
+            50% {
+              height: 0;
+            }
+            100% {
+              height: calc(var(--checkbox-height) * 1.2);
+            }
+          }
+        
+          .checkbox-wrapper-19 input[type=checkbox] {
+            display: none;
+          }
+        
+          .checkbox-wrapper-19 .check-box {
+            height: var(--checkbox-height);
+            width: var(--checkbox-height);
+            background-color: transparent;
+            border: calc(var(--checkbox-height) * .1) solid #000;
+            border-radius: 5px;
+            position: relative;
+            display: inline-block;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            -moz-transition: border-color ease 0.2s;
+            -o-transition: border-color ease 0.2s;
+            -webkit-transition: border-color ease 0.2s;
+            transition: border-color ease 0.2s;
+            cursor: pointer;
+          }
+          .checkbox-wrapper-19 .check-box::before,
+          .checkbox-wrapper-19 .check-box::after {
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            position: absolute;
+            height: 0;
+            width: calc(var(--checkbox-height) * .2);
+            background-color: #34b93d;
+            display: inline-block;
+            -moz-transform-origin: left top;
+            -ms-transform-origin: left top;
+            -o-transform-origin: left top;
+            -webkit-transform-origin: left top;
+            transform-origin: left top;
+            border-radius: 5px;
+            content: " ";
+            -webkit-transition: opacity ease 0.5;
+            -moz-transition: opacity ease 0.5;
+            transition: opacity ease 0.5;
+          }
+          .checkbox-wrapper-19 .check-box::before {
+            top: calc(var(--checkbox-height) * .72);
+            left: calc(var(--checkbox-height) * .41);
+            box-shadow: 0 0 0 calc(var(--checkbox-height) * .05) var(--background-color);
+            -moz-transform: rotate(-135deg);
+            -ms-transform: rotate(-135deg);
+            -o-transform: rotate(-135deg);
+            -webkit-transform: rotate(-135deg);
+            transform: rotate(-135deg);
+          }
+          .checkbox-wrapper-19 .check-box::after {
+            top: calc(var(--checkbox-height) * .37);
+            left: calc(var(--checkbox-height) * .05);
+            -moz-transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+            -o-transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+          }
+        
+          .checkbox-wrapper-19 input[type=checkbox]:checked + .check-box,
+          .checkbox-wrapper-19 .check-box.checked {
+            border-color: #34b93d;
+          }
+          .checkbox-wrapper-19 input[type=checkbox]:checked + .check-box::after,
+          .checkbox-wrapper-19 .check-box.checked::after {
+            height: calc(var(--checkbox-height) / 2);
+            -moz-animation: dothabottomcheck-19 0.2s ease 0s forwards;
+            -o-animation: dothabottomcheck-19 0.2s ease 0s forwards;
+            -webkit-animation: dothabottomcheck-19 0.2s ease 0s forwards;
+            animation: dothabottomcheck-19 0.2s ease 0s forwards;
+          }
+          .checkbox-wrapper-19 input[type=checkbox]:checked + .check-box::before,
+          .checkbox-wrapper-19 .check-box.checked::before {
+            height: calc(var(--checkbox-height) * 1.2);
+            -moz-animation: dothatopcheck-19 0.4s ease 0s forwards;
+            -o-animation: dothatopcheck-19 0.4s ease 0s forwards;
+            -webkit-animation: dothatopcheck-19 0.4s ease 0s forwards;
+            animation: dothatopcheck-19 0.4s ease 0s forwards;
+          }
+
+          .center-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        
+        .checkbox-wrapper-19 .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* расстояние между текстом и чекбоксом */
+        }
+        
+        .checkbox-wrapper-19 .checkbox-label span {
+            font-size: 16px; /* размер текста */
+            color: #333; /* цвет текста */
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .pagination button {
+            margin-top: 20px;
+            padding: 5px 10px;
+            cursor: pointer;
+
+            background-color: white;
+
+            border: 2px outset #ccc;
+
+            transition: transform 0.3s;
+        }
+
+        .pagination button:hover{
+            transform: scale(1.1);
+            border: 2px outset black;
+        }
+        
+
+        .button-54 {
+            font-family: "Open Sans", sans-serif;
+            font-size: 16px;
+            letter-spacing: 2px;
+            text-decoration: none;
+            color: #000;
+            cursor: pointer;
+            border: 3px solid;
+            padding: 0.25em 0.5em;
+            box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+            position: relative;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+          }
+
+          .button-54:hover {
+            background-color: rgb(200, 200, 200);
+          }
+          
+          .button-54:active {
+            box-shadow: 0px 0px 0px 0px;
+            top: 5px;
+            left: 5px;
+          }
+          
+          
+          @media (min-width: 768px) {
+            .button-54 {
+              padding: 0.25em 0.75em;
+            }
+          }
+
+
+
+          .input-group {
+            margin-top: 20px;
+            position: relative;
+           }
+           
+           .inp {
+            border: solid 1.5px #9e9e9e;
+            border-radius: 1rem;
+            background: none;
+            padding: 1rem;
+            font-size: 1rem;
+            color: black;
+            transition: border 150ms cubic-bezier(0.4,0,0.2,1);
+           }
+           
+           .user-label {
+            position: absolute;
+            left: 15px;
+            color: black;
+            pointer-events: none;
+            transform: translateY(1rem);
+            transition: 150ms cubic-bezier(0.4,0,0.2,1);
+           }
+           
+           .inp:focus, .inp:valid {
+            outline: none;
+            border: 1.5px solid #1a73e8;
+           }
+           
+           .inp:focus ~ label, .inp:valid ~ label {
+            transform: translateY(-50%) scale(0.8);
+            background-color: rgb(236, 249, 250);
+            padding: 0.2em;
+            color: #2196f3;
+           }
+
+           #filter_div {
+            display: none;                
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;       
+            width: 300px;                 
+            margin: 20px auto;
+        }
+
+        #add_div {
+            display: none;                
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;       
+            width: 300px;                 
+            margin: 20px auto;
+        }
+    </style>
+</head>
+
+{% extends "base.html" %}
+
+{%block title%}Контакты{%endblock%}
+
+{% block refs%}{% endblock refs%}
+
+{% block content %}
+<body>
+    <main>
+        <header>
+            <h1 class="center">Сотрудники аптеки</h1>
+        </header>
+        <button id="b1" class="button-54 center" style="width: 400px; margin-bottom: 20px;" role="button" onClick="sortArticles()">Отсортировать по возрастанию</button>
+        <section class="med-container">
+            {% if emp|length != 0 %}
+                {% for element in emp %}
+                <section onClick="createAddictionalWindow(this)" class="med-item" data-name="{{element.f_name}}" data-surname="{{element.l_name}}" data-phonenumber="{{element.phone_number}}" data-email="{{element.email}}" data-work="{{element.job_title}}">
+                    <img class="image" src={{ element.emp_png.url }} alt="Emp Image">
+                    <article style="word-wrap: break-word;">
+                        <p>Имя и фамилия: {{element.f_name}}{{" "}}{{element.l_name}}</p>
+                        <hr>
+                        <p>Описание работы: {{element.job_title}}</p>
+                        
+                        <div class="checkbox-wrapper-19" style="margin-bottom: 20px; margin-top: 20px;">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="check_award" onChange="addFooAward(this)"/>
+                                <span class="check-box"></span>
+                                <span>Добавить премию</span>
+                            </label>
+                        </div>
+                    </article>
+                    
+                </section>
+                {% endfor %}
+            {% else %}
+                <p>Пока нет сотрудников.</p>
+            {% endif %}
+        </section>
+
+        <div class="pagination center" id="paginationContainer"></div>
+
+        <div class="center-container">
+            <div class="checkbox-wrapper-19">
+                <label class="checkbox-label">
+                    <span>Добавить фильтрацию</span>
+                    <input type="checkbox" id="cbtest-19" onClick="filterFooUnlock()"/>
+                    <span class="check-box"></span>
+                </label>
+            </div>
+
+            <div class="checkbox-wrapper-19" style="margin-left: 20px;">
+                <label class="checkbox-label">
+                    <span>Добавить сотрудника</span>
+                    <input type="checkbox" id="cbtest-19" onClick="addFooUnlock()"/>
+                    <span class="check-box"></span>
+                </label>
+            </div>
+
+            <button id="b1" class="button-54" style="width: 150px; margin-left: 30px; margin-bottom: 10px;" role="button" onClick="award()">Премировать</button>
+        </div>
+
+        <div id="filter_div">
+            <div class="input-group">
+                <input id="name_in" required="" type="text" name="text" autocomplete="off" class="inp">
+                <label class="user-label">Filter by name</label>
+            </div>
+            <div class="input-group">
+                <input id="surname_in" required="" type="text" name="text" autocomplete="off" class="inp">
+                <label class="user-label">Filter by surname</label>
+            </div>
+            <div class="input-group">
+                <input id="email_in" required="" type="text" name="text" autocomplete="off" class="inp">
+                <label class="user-label">Filter by email</label>
+            </div>
+
+            <div class="input-group">
+                <input id="phone_in" required="" type="text" name="text" autocomplete="off" class="inp">
+                <label class="user-label">Filter by phone number</label>
+            </div>
+
+            <div class="input-group">
+                <button id="b2" class="button-54" style="width: 100px;" role="button" onClick="filter()">Найти</button>
+            </div>
+        </div>
+
+        <div id="add_div">
+            <div class="input-group">
+                <input id="name_in_add" required type="text" name="text" autocomplete="off" class="inp">
+                <label class="user-label">Add name</label>
+            </div>
+            <div class="input-group">
+                <input id="surname_in_add" required type="text" name="text" autocomplete="off" class="inp">
+                <label class="user-label">Add surname</label>
+            </div>
+            <div class="input-group">
+                <input id="email_in_add" required type="text" name="text" autocomplete="off" class="inp">
+                <label class="user-label">Add email</label>
+            </div>
+
+            <div class="input-group">
+                <input id="url_photo_in_add" required type="text" name="text" autocomplete="off" class="inp">
+                <label class="user-label">Add photo URL</label>
+            </div>
+
+            <div class="input-group">
+                <input id="url_in_add" required type="text" name="text" autocomplete="off" class="inp" oninput="validateURL()">
+                <label class="user-label">Add URL</label>
+
+                <p id="urlError" style="color: red; display: none;">Некорректный URL</p><br>
+            </div>
+
+            <div class="input-group">
+                <input id="phone_in_add" required type="text" name="text" autocomplete="off" class="inp" oninput="validatePhone()">
+                <label class="user-label">Add phone number</label>
+
+                <p id="phoneError" style="color: red; display: none;">Некорректный номер телефона</p><br>
+            </div>
+
+            <div class="input-group">
+                <input id="work_in_add" required type="text" name="text" autocomplete="off" class="inp">
+                <label class="user-label">Add work definition</label>
+            </div>
+
+            <div class="input-group">
+                <button id="b2" class="button-54" style="width: 150px;" role="button" onClick="addToTable()">Добавить</button>
+            </div>
+        </div>
+
+        <section id="addictional">
+            <h1 class="center">Информация выбранного сотрудника:</h1>
+            <article style="word-wrap: break-word;">
+                <p id="p1">Имя и фамилия: </p>
+                <hr>
+                <p id="p2">Номер телефона: </p>
+                <hr>
+                <p id="p3">Почта: </p>
+                <hr>
+                <p id="p4">Описание работы: </p>
+            </article>
+        </section>
+
+        <h2 class="center" id="award_out"></h2>
+    <main>
+
+
+        <script>
+            const articlesPerPage = 3;
+            let articles = Array.from(document.querySelectorAll('.med-item'));
+
+            let award_articles = [];
+
+            let button_sort = document.getElementById("b1");
+
+            const paginationContainer = document.getElementById('paginationContainer');
+
+            const filter_div_l = document.getElementById('filter_div');
+
+            const add_div_l = document.getElementById('add_div');
+
+            const input_name = document.getElementById('name_in');
+            const input_surname = document.getElementById('surname_in');
+            const input_email = document.getElementById('email_in');
+            const input_phone = document.getElementById('phone_in');
+
+            const p_name_surname = document.getElementById('p1');
+            const p_phone = document.getElementById('p2');
+            const p_email = document.getElementById('p3');
+            const p_work = document.getElementById('p4');
+
+            const a_out = document.getElementById('award_out');
+
+            const window_elem = document.getElementById('addictional');
+        
+            let totalPages = Math.ceil(articles.length / articlesPerPage);
+            let currentPage = 1;
+            let isSorted = false;
+
+            let isAllowFilter = false;
+            let isAllowAdd = false;
+        
+            function showPage(page) {
+                articles.forEach(article => article.style.display = 'none');
+        
+                const start = (page - 1) * articlesPerPage;
+                const end = start + articlesPerPage;
+        
+                for (let i = start; i < end && i < articles.length; i++) {
+                    articles[i].style.display = 'flex';
+                }
+            }
+        
+            function createPagination() {
+                paginationContainer.innerHTML = '';
+        
+                for (let i = 1; i <= totalPages; i++) {
+                    const button = document.createElement('button');
+                    button.textContent = i;
+        
+                    if (i === currentPage) {
+                        button.style.fontWeight = 'bold';
+                    }
+        
+                    button.addEventListener('click', () => {
+                        currentPage = i;
+                        showPage(currentPage);
+                        createPagination();
+                    });
+        
+                    paginationContainer.appendChild(button);
+                }
+            }
+        
+            function sortArticles() {
+                
+                if(isSorted){
+                    articles.reverse();
+
+                    articles.forEach(article => {
+                        console.log(article);
+                        console.log(article.getAttribute('data-name')); 
+                        console.log(article.innerHTML);
+                    });
+
+                    const container = document.querySelector('.med-container');
+                    articles.forEach(article => container.appendChild(article));
+
+                    totalPages = Math.ceil(articles.length / articlesPerPage);
+        
+                    button_sort.textContent = "Отсортировать по возрастанию";
+
+                    isSorted = false;
+                    
+                    currentPage = 1;
+                    showPage(currentPage);
+                    createPagination();
+                }
+                else{
+                    articles.sort((a, b) => {
+                        const nameA = a.getAttribute('data-name').trim();
+                        const nameB = b.getAttribute('data-name').trim();
+
+                        return nameA.localeCompare(nameB);
+                    });
+
+                    articles.forEach(article => {
+                        console.log(article); 
+                        console.log(article.getAttribute('data-name')); 
+                        console.log(article.innerHTML);
+                    });
+
+                    const container = document.querySelector('.med-container');
+                    articles.forEach(article => container.appendChild(article));
+            
+                    isSorted = true;
+                    totalPages = Math.ceil(articles.length / articlesPerPage);
+
+                    button_sort.textContent = "Отсортировать по убыванию";
+            
+                    currentPage = 1;
+                    showPage(currentPage);
+                    createPagination();
+                }
+            }
+
+            function filterFooUnlock() {
+                if(isAllowFilter){
+                    filter_div_l.style.display = "none";
+
+                    isAllowFilter = false;
+                    return;
+                }
+                
+                filter_div_l.style.display = "flex";
+                
+                isAllowFilter = true;
+            }
+
+            function addFooUnlock() {
+                if(isAllowAdd){
+                    add_div_l.style.display = "none";
+
+                    isAllowAdd = false;
+                    return;
+                }
+                
+                add_div_l.style.display = "flex";
+                
+                isAllowAdd = true;
+            }
+
+            function filter() {
+                let filter_name = input_name.value.trim().toLowerCase();
+                let filter_surname = input_surname.value.trim().toLowerCase();
+                let filter_email = input_email.value.trim().toLowerCase();
+                let filter_phone = input_phone.value.trim().toLowerCase();
+
+                let filteredArticles = articles;
+
+                if (filter_name != "") {
+                    filteredArticles = filteredArticles.filter(article => {
+                        const name = article.getAttribute('data-name')?.trim().toLowerCase();
+                        return name && name.includes(filter_name);
+                    });
+                }
+
+                if (filter_surname != "") {
+                    filteredArticles = filteredArticles.filter(article => {
+                        const surname = article.getAttribute('data-surname')?.trim().toLowerCase();
+                        return surname && surname.includes(filter_surname);
+                    });
+                }
+
+                if (filter_email != "") {
+                    filteredArticles = filteredArticles.filter(article => {
+                        const email = article.getAttribute('data-email')?.trim().toLowerCase();
+                        return email && email.includes(filter_email);
+                    });
+                }
+
+                if (filter_phone != "") {
+                    filteredArticles = filteredArticles.filter(article => {
+                        const phone = article.getAttribute('data-phonenumber')?.trim().toLowerCase();
+                        return phone && phone.includes(filter_phone);
+                    });
+                }
+
+                const container = document.querySelector('.med-container');
+                container.innerHTML = ''; 
+
+                filteredArticles.forEach(article => {
+                    console.log(article); 
+                    console.log(article.getAttribute('data-name')); 
+                    console.log(article.innerHTML); 
+                });
+                filteredArticles.forEach(article => container.appendChild(article));
+
+                currentPage = 1;
+                showPage(currentPage);
+                createPagination();
+            }
+
+            function createAddictionalWindow(elem){
+                p_name_surname.textContent = "Имя и фамилия: " + elem.dataset.name + " " + elem.dataset.surname;
+                p_phone.textContent = "Номер телефона: " + elem.dataset.phonenumber; 
+                p_email.textContent = "Почта: " + elem.dataset.email;
+                p_work.textContent = "Описание работы:  " + elem.dataset.work;
+
+                window_elem.style.display = "flex";
+            }
+
+            function checkFormValidity() {
+                const isFormValid = document.getElementById("url_in_add").classList.contains("invalid") === false &&
+                                    document.getElementById("phone_in_add").classList.contains("invalid") === false &&
+                                    document.getElementById("name_in_add").value.trim() !== "" &&
+                                    document.getElementById("url_photo_in_add").value.trim() !== "" &&
+                                    document.getElementById("surname_in_add").value.trim() !== "" &&
+                                    document.getElementById("work_in_add").value.trim() !== "" &&
+                                    document.getElementById("email_in_add").value.trim() !== "";
+                
+                document.getElementById("b2").disabled = !isFormValid;
+            }
+
+            function validateURL() {
+                const urlInput = document.getElementById("url_in_add");
+                const urlError = document.getElementById("urlError");
+                const urlRegex = /^(https?:\/\/).+\.(php|html)$/;
+                
+                if (!urlRegex.test(urlInput.value)) {
+                    urlInput.classList.add("invalid");
+                    urlError.style.display = "block";
+                } else {
+                    urlInput.classList.remove("invalid");
+                    urlError.style.display = "none";
+                }
+                checkFormValidity();
+            }
+    
+            function validatePhone() {
+                const phoneInput = document.getElementById("phone_in_add");
+                const phoneError = document.getElementById("phoneError");
+                const phoneRegex = /^(\+375|8)\s?\(?((\d{2})|(\d{3}))\)?[\s-]?(\d{3})[\s-]?(\d{2})[\s-]?(\d{2})$/;
+                
+                if (!phoneRegex.test(phoneInput.value)) {
+                    phoneInput.classList.add("invalid");
+                    phoneError.style.display = "block";
+                } else {
+                    phoneInput.classList.remove("invalid");
+                    phoneError.style.display = "none";
+                }
+                checkFormValidity();
+            }
+
+            function addToTable() {
+                const name = document.getElementById("name_in_add").value;
+                const surname = document.getElementById("surname_in_add").value;
+                const photoUrl = document.getElementById("url_photo_in_add").value;  // URL изображения
+                const phone = document.getElementById("phone_in_add").value;
+                const email = document.getElementById("email_in_add").value;
+                const workDesc = document.getElementById("work_in_add").value;
+                const url = document.getElementById("url_in_add").value;  // Добавлен URL
+            
+                const newEmployee = document.createElement('section');
+
+                newEmployee.classList.add('med-item');
+                newEmployee.addEventListener('click', function() {
+                    createAddictionalWindow(newEmployee);
+                });
+                newEmployee.setAttribute('data-name', name);
+                newEmployee.setAttribute('data-surname', surname);
+                newEmployee.setAttribute('data-phonenumber', phone);
+                newEmployee.setAttribute('data-email', email);
+                newEmployee.setAttribute('data-work', workDesc);
+                newEmployee.setAttribute('data-url', url);
+            
+                newEmployee.innerHTML = `
+                    <img class="image" src="${photoUrl}" alt="Emp Image">
+                    <article style="word-wrap: break-word;">
+                        <p>Имя и фамилия: ${name} ${surname}</p>
+                        <hr>
+                        <p>Описание работы: ${workDesc}</p>
+                        <hr>
+                        <p>URL: ${url}</p> <!-- Выводим URL -->
+                        <div class="checkbox-wrapper-19" style="margin-bottom: 20px; margin-top: 20px;">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="check_award" onChange="addFooAward(this)"/>
+                                <span class="check-box"></span>
+                                <span>Добавить премию</span>
+                            </label>
+                        </div>
+                    </article>
+                `;
+            
+                // Находим контейнер med-container и добавляем нового сотрудника
+                const container = document.querySelector('.med-container');
+                container.appendChild(newEmployee);
+
+                // Добавляем новый элемент в массив articles
+                articles.push(newEmployee);  // Добавляем новый элемент в массив
+
+                // Пересчитываем количество страниц на основе обновленного массива
+                totalPages = Math.ceil(articles.length / articlesPerPage);
+                console.log("Total pages after addition: ", totalPages);
+
+                // Обновляем пагинацию
+                currentPage = 1;
+                showPage(currentPage);
+                createPagination();
+            }
+            
+            function addFooAward(pick_checkbox){
+                let art = pick_checkbox.closest('.med-item');
+
+                if(pick_checkbox.checked){
+                    award_articles.push(art.getAttribute('data-surname'));
+                }
+                else{
+                    award_articles = award_articles.filter(item => item !== art.getAttribute('data-surname'));
+                }
+            }
+
+            function award(){
+                let str = "Сотрудникам с фамилиями: "
+                
+                if(award_articles.length === 0){
+                    return;
+                }
+
+                let lastIndex = award_articles.length - 1;
+                
+                award_articles.forEach((surname, index) => {
+                    str += surname;
+                    
+                    if (index !== lastIndex) { 
+                        str += ", ";
+                    }
+                    else{
+                        str += " ";
+                    }
+                });
+
+                str += "вручается премия за хорошую эффективности на рабочем месте.";
+
+                a_out.textContent = str;
+            }
+        
+            showPage(currentPage);
+            createPagination();
+        </script>       
+<body>
+{% endblock content %}

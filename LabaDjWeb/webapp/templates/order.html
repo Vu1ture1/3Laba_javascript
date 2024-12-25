@@ -1,0 +1,120 @@
+<head>
+    <style>
+        body{
+            font-family : "Roboto Flex", sans-serif;
+        }
+        
+        .med-container {
+            display: grid;
+            grid-template-columns: 1fr;
+    
+            gap: 20px;
+            
+            width: 60%;
+            height: auto;
+            border: 2px outset #ccc;
+            padding: 20px;
+            text-align: left;
+            margin: 0 auto;
+        }
+
+        .med-container p {
+            overflow-wrap: break-word;
+            word-break: break-word;
+        }
+
+        .med-container button {
+            text-decoration: none;
+            color:black;
+            background-color: white;
+            border-radius: 5px;
+            margin-right: 15px;
+            transition: background-color 0.1s;
+        }
+        .med-container button:hover {
+            background-color: red;
+            color: white;
+        }
+
+        .div_1{
+            display: flex;
+        }
+
+        .div_1 button {
+            text-decoration: none;
+            color:black;
+            background-color: rgb(236, 249, 250);
+            border-radius: 5px;
+            margin-top: 10px;
+            margin-right: 15px;
+            transition: background-color 0.1s;
+        }
+        .div_1 button:hover {
+            background-color: black;
+            color: white;
+        }
+
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+    </style>
+</head>
+
+{% extends "base.html" %}
+
+{%block title%}Заказ{%endblock%}
+
+{% block refs%}{% endblock refs%}
+
+{% block content %}
+
+<body>
+    <main>
+
+        <header>
+            <h1 class="center">Заказ</h1>
+        </header>
+
+
+
+        <div itemscope itemtype="https://schema.org/Order" class="med-container">
+            <section class="div_1">
+                <h4>{{"Общая цена заказа "}}{{total}}{{" рублей"}}</h4>
+                
+                <form style="margin-top: 4px; margin-left: 50px;" action="/basket/order/" method="post">
+                    {% csrf_token %}
+
+                <select itemprop="discount" style="height: 30px; margin-right: 40px;" name="my_option" onchange="showValue(this)">
+                        <option value="{{ 0 }}">{{ "Промокода нет" }}</option>
+                        
+                        {% for item in list %}
+                            <option value="{{ item.discount }}">{{ item.promo_str }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <select itemprop="orderDelivery" style="height: 30px; min-width: 160px; margin-right: 40px;" name="my_option_point">
+                        {% for point in points %}
+                            <option value="{{ point.id }}">{{ point.pick_up_point }}</option>
+                        {% endfor %}
+                    </select>
+
+                
+
+                    <button style="width: 125px; height: 30px;" type="submit">Отправить заказ</button>
+                </form>
+                
+            </section>
+        </div>
+    </main>
+</body>
+
+<script>
+    function showValue(select) {
+        var value = select.value;
+        alert("Скидка: " + value + " рублей");
+    }    
+</script>
+{% endblock content %}

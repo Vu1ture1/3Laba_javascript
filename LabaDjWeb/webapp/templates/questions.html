@@ -1,0 +1,92 @@
+<head>
+    <style>
+        body{
+            font-family : "Roboto Flex", sans-serif;
+        }
+        
+        details {
+            border: 2px outset #aaa;
+            border-radius: 4px;
+            padding: 0.5em 0.5em 0;
+
+            transition: background-color 0.2s;
+          }
+
+          details:hover {
+            background-color: black;
+            color: white;
+          }
+          
+          summary {
+            font-weight: bold;
+            margin: -0.5em -0.5em 0;
+            padding: 0.5em;
+            //list-style: none;
+          }
+          
+          details[open] {
+            padding: 0.5em;
+            border-bottom: 2px outset black;
+          }
+          
+          details[open] summary {
+            border-bottom: 2px outset black;
+            margin-bottom: 0.5em;
+          }
+
+        .div1{
+            width: 60%;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 20px;
+            
+            user-select: none;
+        }
+
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+          
+    </style>
+
+    
+</head>
+
+{% extends "base.html" %}
+
+{%block title%}Вопросы{%endblock%}
+
+{% block refs%}{% endblock refs%}
+
+{% block content %}
+
+<body>
+    <main>
+
+        <header>
+            <h1 class="center">Часто задаваемые вопросы:</h1>
+        </header>
+
+        {%if all_questions|length != 0%}
+        {% for element in all_questions %} 
+
+        <section class="div1">
+            <details>
+                <summary>{{element.name}}</summary>
+                {{element.description}}
+            </details>
+        </section>
+
+        {% endfor %}
+        {%else%}
+            <p>На данный момент вопросы не добавленны.</p>
+        {%endif%}
+            
+    </main>
+</body>
+  
+{% endblock content %}

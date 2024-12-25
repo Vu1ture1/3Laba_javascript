@@ -1,0 +1,181 @@
+<head>
+    <style>
+        body { 
+            display: flex; 
+            flex-direction: column; 
+            padding: 20px; 
+            background-color: #f9f9f9; 
+        }
+        
+        h1 { 
+            color: #333; 
+            text-align: center; 
+        }
+        
+        canvas { 
+            margin-top: 20px; 
+            border: 1px solid #ddd; 
+            background-color: #ffffff; 
+        }
+
+        .controls {
+            margin-top: 10px;
+        }
+
+    </style>
+</head>
+
+
+{% extends "base.html" %}
+
+{%block title%}Корзина{%endblock%}
+
+{% block refs%}{% endblock refs%}
+
+{% block content %}
+
+<body>
+    <h1>Сравнение разложения функции ln(1 - x) и точной функции</h1>
+
+    <div class="controls">
+        <label for="maxTerms">Количество членов ряда (n):</label>
+        <input type="number" id="maxTerms" value="5" min="1">
+        <label for="xStep">Шаг (x):</label>
+        <input type="number" id="xStep" value="0.1" min="0.01" step="0.01">
+        <button id="buildChartButton">Построить</button>
+        <button id="saveChartButton">Сохранить график</button>
+        <canvas id="chartCanvas" width="600" height="400"></canvas>
+    </div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
+<script src="https://cdn.jsdelivr.net/npm/mathjs@9.4.4/dist/math.min.js"></script> 
+
+<script>
+    // Функция для генерации значений разложения в ряд Тейлора
+    function generateSeriesData(xValues, maxTerms) {
+        let seriesData = [];
+        xValues.forEach(x => {
+            let fx = 0;
+            for (let n = 1; n <= maxTerms; n++) {
+                fx -= Math.pow(x, n) / n;  // (-1)^(n+1) применяется изменением знака
+            }
+            seriesData.push(fx);
+        });
+        return seriesData;
+    }
+
+    // Функция для генерации точных значений функции ln(1 - x)
+    function generateMathData(xValues) {
+        return xValues.map(x => Math.log(1 - x));
+    }
+
+    // Функция для генерации диапазона значений x
+    function generateXValues(step) {
+        let xValues = [];
+        for (let i = 0; i <= 0.9; i += step) {
+            xValues.push(i);
+        }
+        return xValues;
+    }
+
+    // Инициализация графика
+    const ctx = document.getElementById('chartCanvas').getContext('2d');
+    let chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: [],
+            datasets: [
+                {
+                    label: 'Разложение в ряд ln(1 - x)',
+                    data: [],
+                    borderColor: 'black',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderWidth: 2,
+                    pointRadius: 2
+                },
+                {
+                    label: 'Точная функция ln(1 - x)',
+                    data: [],
+                    borderColor: 'yellow',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderWidth: 2,
+                    pointRadius: 2
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Сравнение разложения функции ln(1 - x) в ряд с точной функцией'
+                },
+                legend: {
+                    position: 'top',
+                },
+                tooltip: {
+                    mode: 'index',
+                    intersect: false
+                }
+            },
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'x'
+                    },
+                    ticks: {
+                        beginAtZero: true
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'f(x)'
+                    }
+                }
+            }
+        }
+    });
+
+    // Функция обновления графика
+    function updateChart() {
+        const xStep = parseFloat(document.getElementById('xStep').value);
+        const maxTerms = parseInt(document.getElementById('maxTerms').value);
+
+        const xValues = generateXValues(xStep);
+        const seriesData = generateSeriesData(xValues, maxTerms);
+        const mathData = generateMathData(xValues);
+
+        chart.data.labels = xValues.map(x => x.toFixed(2)); // округление до 2 знаков
+        chart.data.datasets[0].data = seriesData;
+        chart.data.datasets[1].data = mathData;
+
+        chart.update();
+    }
+
+    // Обработчик события для кнопки сохранения
+    document.getElementById('saveChartButton').addEventListener('click', function() {
+        // Получаем изображение графика в формате base64
+        const imageUrl = chart.toBase64Image();
+
+        // Создаем ссылку для скачивания
+        const link = document.createElement('a');
+        link.href = imageUrl;
+        link.download = 'chart.png';  // Имя файла, который будет сохранен
+        link.click();  // Симулируем клик по ссылке для начала скачивания
+    });
+
+
+    // Обработчик события для кнопки построения
+    document.getElementById('buildChartButton').addEventListener('click', updateChart);
+</script>
+
+
+
+</body>
+
+
+{% endblock content %}

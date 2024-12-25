@@ -1,0 +1,180 @@
+<head>
+    <style>
+        body{
+            font-family : "Roboto Flex", sans-serif;
+        }
+        
+        .med-container {
+            display: grid;
+            grid-template-columns: 1fr;
+    
+            gap: 20px;
+            
+            width: 60%;
+            height: auto;
+            border: 2px outset #ccc;
+            padding: 20px;
+            text-align: left;
+            margin: 0 auto;
+
+        }
+
+        .med-container p {
+            overflow-wrap: break-word;
+            word-break: break-word;
+        }
+
+        .med-container button {
+            text-decoration: none;
+            color:black;
+            background-color: white;
+            border-radius: 5px;
+            margin-right: 15px;
+            transition: background-color 0.1s;
+        }
+        .med-container button:hover {
+            background-color: black;
+            color: white;
+        }
+
+        .image {
+            width: 300px;
+            height: 150px;
+        }
+
+        .med-item {
+            float: none;
+            clear: both;
+            gap: 20px; 
+            word-wrap: break-word;
+            
+        }
+
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .link-button {
+            background: none;
+            color: black;
+            border: none;
+            text-decoration: none;
+            display: block;  
+            font-size: 15px;
+        }
+        .link-button:hover {
+            color: gray;
+        }
+
+        .logo {
+            height: 150px; 
+            width: 200px;
+            transition: transform 1s; /* Исправлено */
+        }
+        
+        .logo:hover {
+            transform: rotateY(10deg) rotateX(90deg) rotateZ(360deg);
+        }
+
+        .ins{
+            border: 2px outset #ccc;
+            padding: 20px;
+            transition: transform 0.3s;
+        }
+
+        .ins:hover{
+            transform: scale(1.02);
+            border: 2px outset black;
+        }
+    </style>
+</head>
+
+{% extends "base.html" %}
+
+{%block title%}FAQ{%endblock%}
+
+{% block refs%}{% endblock refs%}
+
+{% block content %}
+
+<body>
+    <main>
+
+        <header>
+            <h1 class="center">О аптеке</h1>
+        </header>
+
+        <video style="margin-bottom: 10px; border-radius: 20px;" class="center" width="720" height="360" src="{{ company.video.url }}" autoplay controls preload="none" muted loop>
+            Video cannot be displayed
+            </video>
+        <i style="margin-bottom: 40px; font-size: 20px;" class="center">Наш клиент принимает лекарство</i>
+
+        <h1 class="center">Общая информация</h1>
+
+        <section class="med-container">
+            {% if info|length != 0 %}
+                {% for el in info %}
+                    <div class="med-item">
+                        <article>
+                            
+                            <p><h4>Логотип:</h4> <img class="logo" src={{ company.logo.url }} alt="Logo Image"></p>
+                            <p><h4>Номер телефона аптеки:</h4> {{el.phone_number}}</p>
+                            <p><h4>Почта аптеки:</h4> {{el.email}}</p>
+                            <p><h4>Адресс:</h4> {{el.adress}}</p>
+                            <p><h4>КПП (Код причины постановки на учет):</h4> {{company.RCR}}</p>
+                            <p><h4>ИНН (Идентификационный номер налогоплательщика):</h4> {{company.TIN}}</p>
+                            <p><h4>ОГРН (Основной государственный регистрационный номер):</h4> {{company.PSRN}}</p>
+                            <p><h4>Детали о банках используемых проектом:</h4> {{company.bank_details}}</p>
+                            <p><h4>О проекте:</h4> {{el.description}}</p>
+                            <p><h4>Сертификат:</h4> <a class="link-button" href="/certificate">Просмотреть сертификат</a></p>
+                            <h4>По вопросам вакансий звонить на рабочий телефон или писать на почту аптеки.</h4>
+                        </article>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="med-item">
+                    <p>Пока нет информации.</p>
+                </div>    
+            {% endif %}
+            
+            </section>
+
+        <h1 class="center">История аптеки</h1>
+
+        <article class="med-container" style="margin-top: 20px;">
+            
+            <div class="med-item">
+                <p style="font-size: 20px;">"{{company.year_history}}"</p>
+            </div>
+
+        </article>
+
+        <h1 class="center">Наши вакансии</h1>
+
+        <section class="med-container" style="margin-top: 20px;">
+            
+            {% if vacs|length != 0 %}
+                {% for element in vacs %}
+                    <div class="med-item">
+                        <article class="ins">
+                            <h4>Вакансия: {{element.name}}</h4>
+                            <span>Описание: {{element.description}}</span>
+                            <h4>Зарплата от: {{element.salary}}{{" руб."}}</h4>
+                        </article>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="med-item">
+                    <p>Пока нет вакансий.</p>
+                </div>    
+
+            {% endif %}
+            
+            </section>
+    </main>
+</body>
+
+{% endblock content %}
